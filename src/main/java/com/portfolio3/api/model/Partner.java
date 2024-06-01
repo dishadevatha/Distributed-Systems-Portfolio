@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-public class PartnerUni {
+public class Partner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,10 +18,10 @@ public class PartnerUni {
     private int incomingStudents;
     private LocalDate springSem;
     private LocalDate autumnSem;
-    @OneToMany(mappedBy = "partneruni", cascade = CascadeType.ALL)
-    private List<Module> modules;
+    @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL)
+    private List<Modules> modules;
 
-    public PartnerUni(Long id, String partnerName, String country, String department, String url, String contactPerson, int outgoingStudents, int incomingStudents, LocalDate springSem, LocalDate autumnSem, List<Module> modules) {
+    public Partner(Long id, String partnerName, String country, String department, String url, String contactPerson, int outgoingStudents, int incomingStudents, LocalDate springSem, LocalDate autumnSem, List<Modules> modules) {
         this.id = id;
         this.partnerName = partnerName;
         this.country = country;
@@ -35,7 +35,7 @@ public class PartnerUni {
         this.modules = modules;
     }
 
-    public PartnerUni() {
+    public Partner() {
     }
 
     public Long getId() {
@@ -118,11 +118,11 @@ public class PartnerUni {
         this.autumnSem = autumnSem;
     }
 
-    public List<Module> getModules() {
+    public List<Modules> getModules() {
         return modules;
     }
 
-    public void setModules(List<Module> modules) {
+    public void setModules(List<Modules> modules) {
         this.modules = modules;
     }
 }

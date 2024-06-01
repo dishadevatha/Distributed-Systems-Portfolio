@@ -3,7 +3,7 @@ package com.portfolio3.api.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Module {
+public class Modules {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,18 +13,18 @@ public class Module {
     private int credits;
 
     @ManyToOne
-    @JoinColumn(name = "partneruni_id")
-    private PartnerUni partnerUni;
+    @JoinColumn(name = "partner_id")
+    private Partner partner;
 
-    public Module(Long id, String name, int sem, int credits, PartnerUni partnerUni) {
+    public Modules(Long id, String name, int sem, int credits, Partner partner) {
         this.id = id;
         this.name = name;
         this.sem = sem;
         this.credits = credits;
-        this.partnerUni = partnerUni;
+        this.partner = partner;
     }
 
-    public Module() {
+    public Modules() {
     }
 
     public Long getId() {
@@ -59,11 +59,11 @@ public class Module {
         this.credits = credits;
     }
 
-    public PartnerUni getPartnerUni() {
-        return partnerUni;
+    public Partner getPartnerUni() {
+        return partner;
     }
 
-    public void setPartnerUni(PartnerUni partnerUni) {
-        this.partnerUni = partnerUni;
+    public void setPartnerUni(Partner partner) {
+        this.partner = partner;
     }
 }
