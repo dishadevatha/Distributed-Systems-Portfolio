@@ -1,22 +1,27 @@
-package com.portfolio3.api.model;
+package com.project3.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
-public class Modules {
+public class Mod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private int sem;
     private int credits;
 
+
     @ManyToOne
     @JoinColumn(name = "partner_id")
+    @JsonIgnore
     private Partner partner;
 
-    public Modules(Long id, String name, int sem, int credits, Partner partner) {
+
+    // Constructors
+
+    public Mod(Long id, String name, int sem, int credits, Partner partner) {
         this.id = id;
         this.name = name;
         this.sem = sem;
@@ -24,8 +29,10 @@ public class Modules {
         this.partner = partner;
     }
 
-    public Modules() {
+    public Mod() {
     }
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -47,23 +54,23 @@ public class Modules {
         return sem;
     }
 
-    public void setSem(int sem) {
-        this.sem = sem;
+    public void setSem(int semester) {
+        this.sem = semester;
     }
 
     public int getCredits() {
         return credits;
     }
 
-    public void setCredits(int credits) {
-        this.credits = credits;
+    public void setCredits(int creditPoints) {
+        this.credits = creditPoints;
     }
 
-    public Partner getPartnerUni() {
+    public Partner getUniversity() {
         return partner;
     }
 
-    public void setPartnerUni(Partner partner) {
+    public void setUniversity(Partner partner) {
         this.partner = partner;
     }
 }

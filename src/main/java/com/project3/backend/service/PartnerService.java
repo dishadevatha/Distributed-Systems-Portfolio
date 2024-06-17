@@ -1,8 +1,8 @@
-package com.portfolio3.api.service;
+package com.project3.backend.service;
 
 
-import com.portfolio3.api.model.Partner;
-import com.portfolio3.api.repository.PartnerRepository;
+import com.project3.backend.model.Partner;
+import com.project3.backend.repository.PartnerRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,26 +15,26 @@ import java.util.Optional;
 public class PartnerService {
 
     @Autowired
-    private PartnerRepository partnerRepository;
+    private PartnerRep partnerRep;
 
     public Partner createPartner(Partner partner) {
-        return partnerRepository.save(partner);
+        return partnerRep.save(partner);
     }
 
     public Optional<Partner> getPartner(Long id) {
-        return partnerRepository.findById(id);
+        return partnerRep.findById(id);
     }
 
     public Partner updatePartner(Long id, Partner partner) {
         partner.setId(id);
-        return partnerRepository.save(partner);
+        return partnerRep.save(partner);
     }
 
     public void deletePartner(Long id) {
-        partnerRepository.deleteById(id);
+        partnerRep.deleteById(id);
     }
 
-    public Page<Partner> searchPartners(Specification<Partner> spec, Pageable pageable) {
-        return partnerRepository.findAll(spec, pageable);
+    public Page<Partner> searchPartner(Specification<Partner> spec, Pageable pageable) {
+        return partnerRep.findAll(spec, pageable);
     }
 }

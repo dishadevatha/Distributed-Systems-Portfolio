@@ -1,7 +1,8 @@
-package com.portfolio3.api.controller;
+package com.project3.backend.controller;
 
-import com.portfolio3.api.model.Partner;
-import com.portfolio3.api.service.PartnerService;
+import com.project3.backend.model.Partner;
+import com.project3.backend.service.PartnerService;
+import com.project3.backend.specification.partnerSpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/partners")
-public class PartnerController {
+public class PartnerCont {
 
     @Autowired
     private PartnerService partnerService;
@@ -43,8 +44,13 @@ public class PartnerController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Partner>> searchPartners(Specification<Partner> spec, Pageable pageable) {
-        Page<Partner> universities = partnerService.searchPartners(spec, pageable);
+    public ResponseEntity<Page<Partner>> searchPartner(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String country,
+            @RequestParam(required = false) String department,
+            Pageable pageable) {
+        Specification<Partner> spec = partnerSpec.getPartnerSpec(name, country, department);
+        Page<Partner> universities = partnerService.searchPartner(spec, pageable);
         return ResponseEntity.ok(universities);
     }
 }
